@@ -8,7 +8,7 @@
 
 The model used is a Long Short-Term Memory (LSTM) model, a type of recurrent neural network (RNN) designed to analyze product reviews and predict whether people are likely to recommend the product or not. 
 
-## Model Details
+## Model Details Rudio
 
 ### Model Description
 
@@ -31,17 +31,16 @@ RoBERTa is a ..... It is trained on X% of the dataset, and is designed for opini
 - **Paper:** RoBERTa: A Robustly Optimized BERT Pretraining Approach. Yinhan Liu et al. 2019
 - **Demo [optional]:** {{ demo | default("[More Information Needed]", true)}}
 
-## Uses
+## Uses Sara 
 
-The model is designed to analyze customer reviews in order to understand sentiment and determine whether customers are likely to recommend a product positively or not. 
-<!--
-# -Improve customer experience: Sentiment analysis can be used to understand customer opinions and feedback on products and services, allowing companies to improve the customer experience and build stronger customer relationships.
-# -Market research: Sentiment analysis can be used to monitor public sentiment towards a particular topic or brand, providing valuable insights into market trends and customer preferences.
-#-Improve product design: Sentiment analysis can be used to understand customer preferences and opinions on product features, allowing companies to design products that better meet customer needs.
-# -Improve social media monitoring: Sentiment analysis can be used to monitor social media conversations and understand the tone and sentiment behind them, providing valuable insights into public perception and sentiment.
-# -Improve decision making: Sentiment analysis can provide a broad overview of the sentiment of a population towards a particular topic or brand, allowing decision-makers to make informed decisions based on data-driven insights.
--->
-### Direct Use
+The model is designed to analyze customer reviews and comments in order to understand sentiment and determine whether customers are likely to recommend a product positively or not. 
+Improve customer experience: Sentiment analysis can be used to understand customer opinions and feedback on products and services, allowing companies to improve the customer experience and build stronger customer relationships.
+-Market research: Sentiment analysis can be used to monitor public sentiment towards a particular topic or brand, providing valuable insights into market trends and customer preferences.
+-Improve product design: Sentiment analysis can be used to understand customer preferences and opinions on product features, allowing companies to design products that better meet customer needs.
+-Improve social media monitoring: Sentiment analysis can be used to monitor social media conversations and understand the tone and sentiment behind them, providing valuable insights into public perception and sentiment.
+-Improve decision making: Sentiment analysis can provide a broad overview of the sentiment of a population towards a particular topic or brand, allowing decision-makers to make informed decisions based on data-driven insights.
+
+### Direct Use 
 
 This is useful for companies to make data-driven decisions, without having to read all the reviews. An idea of the product recommendations will be available and thus be able to make improvements through a global view of all the reviews.
 
@@ -55,7 +54,7 @@ This is useful for companies to make data-driven decisions, without having to re
 
 The model has been trained from reviews, thus there is a subjective opinion in the text.
 
-## Bias, Risks, and Limitations
+## Bias, Risks, and Limitations Damien
 
 ### Bias
 - The opinion on a product depends on several subjective aspects that are not covered by the model, such as the size of women.
