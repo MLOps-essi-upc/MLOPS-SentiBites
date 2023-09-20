@@ -4,7 +4,7 @@
 {{ card_data }}
 ---
 
-# Model Card for Women's E-Commerce Clothing Reviews
+# Model Card for Amazon Fine Food Reviews
 
 The model used is a Long Short-Term Memory (LSTM) model, a type of recurrent neural network (RNN) designed to analyze product reviews and predict whether people are likely to recommend the product or not. 
 
