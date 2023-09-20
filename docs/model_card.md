@@ -14,9 +14,14 @@ The model used is a Long Short-Term Memory (LSTM) model, a type of recurrent neu
 
 The LSTM (Long Short-Term Memory) model is a sequential neural network architecture with dropout regularization. It is trained on X% of the dataset, and is designed for opinion analysis and product recommendation prediction. It leverages the structure of text data to capture dependencies and patterns in reviews, allowing it to make binary recommendations based on the sentiment and content of incoming reviews.
 
+ mariana.mirra@estudiantat.upc.edu
+Sara Montese, sara.montese@estudiantat.upc.edu
+Vasco Gomes, vasco.david.antunes.pereira@estudiantat.upc.edu 
+Rudio Fida Cyrille, rudio.fida-cyrille@estudiantat.upc.edu 
+Damien Lastes
 
-- **Developed by:** Valèria Caro Via, Esther Fanyanàs i Ropero, Claudia Len Manero
-- **Shared by [optional]:** {{ shared_by | default("[More Information Needed]", true)}}
+- **Developed by:** Mariana Monteiro, Sara Montese, Vasco Gomes, Rudio Fida Cyrille, Damien Lastes
+# - **Shared by [optional]:** {{ shared_by | default("[More Information Needed]", true)}}
 - **Model type:** LSTM
 - **Language(s) (NLP):** English
 - **License:** {{ license | default("[More Information Needed]", true)}}
@@ -33,6 +38,11 @@ The LSTM (Long Short-Term Memory) model is a sequential neural network architect
 ## Uses
 
 The model is designed to analyze customer reviews and comments in order to understand sentiment and determine whether customers are likely to recommend a product positively or not. 
+# -Improve customer experience: Sentiment analysis can be used to understand customer opinions and feedback on products and services, allowing companies to improve the customer experience and build stronger customer relationships.
+# -Market research: Sentiment analysis can be used to monitor public sentiment towards a particular topic or brand, providing valuable insights into market trends and customer preferences.
+# -Improve product design: Sentiment analysis can be used to understand customer preferences and opinions on product features, allowing companies to design products that better meet customer needs.
+# -Improve social media monitoring: Sentiment analysis can be used to monitor social media conversations and understand the tone and sentiment behind them, providing valuable insights into public perception and sentiment.
+# -Improve decision making: Sentiment analysis can provide a broad overview of the sentiment of a population towards a particular topic or brand, allowing decision-makers to make informed decisions based on data-driven insights.
 
 ### Direct Use
 
