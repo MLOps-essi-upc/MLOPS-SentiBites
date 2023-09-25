@@ -1,35 +1,36 @@
 ---
 # For reference on model card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/modelcard.md?plain=1
-# Doc / guide: https://huggingface.co/docs/hub/model-cards
-{{ card_data }}
 ---
 
 # Model Card for Amazon Fine Food Reviews
 
-The model used is a Long Short-Term Memory (LSTM) model, a type of recurrent neural network (RNN) designed to analyze product reviews and predict whether people are likely to recommend the product or not. 
+The model is a transformer-based model whose goal is to predict the polarity (negative or positive) of a review.
 
-## Model Details Rudio
+## Model Details 
 
 ### Model Description
 
-RoBERTa is a ..... It is trained on X% of the dataset, and is designed for opinion analysis and product recommendation prediction. It leverages the structure of text data to capture dependencies and patterns in reviews, allowing it to make binary recommendations based on the sentiment and content of incoming reviews.
+RoBERTaSB is a model trained for Sentiment Analysis over food reviews from Amazon. Its goal is to label an input review as positive or negative. Our model is a version of RoBERTa fine-tuned over the Amazon Fine Food Reviews dataset.
 
+RoBERTa (Robustly Optimized BERT Pretraining Approach) is a state-of-the-art transformers model that can produce great results on the different Natural language processing tasks (NLP). The model is an evolution of Google's BERT (Bidirectionnal Encoder) which revolutionized NLP in 2018.
+RoBERTa is pretrained on a large corpus of English data in a self-supervised fashion. This means it was pretrained on the raw texts only, with no humans labelling them in any way with an automatic process to generate inputs and labels from those texts.
 
+More precisely, it was pretrained with the Masked language modeling (MLM) objective. Taking a sentence, the model randomly masks 15% of the words in the input then run the entire masked sentence through the model and has to predict the masked words. This procedure allows the model to have an understanding of the contexts from both left and rigth of each word, it learns a bidirectional representation.
+
+This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks. This allows us to re-train the model for our Amazon reviews sentiment analysis task by using labelled sentences.
 
 - **Developed by:** Mariana Monteiro, Sara Montese, Vasco Gomes, Rudio Fida Cyrille, Damien Lastes
-# - **Shared by [optional]:** {{ shared_by | default("[More Information Needed]", true)}}
-- **Model type:** LSTM
+- **Shared by :** {{ shared_by | default("[More Information Needed]", true)}}
+- **Model type:** Transformers
 - **Language(s) (NLP):** English
 - **License:** {{ license | default("[More Information Needed]", true)}}
-- **Finetuned from model [optional]:** {{ finetuned_from | default("[More Information Needed]", true)}}
+- **Finetuned from model :** RoBERTa
 
-### Model Sources [optional]
+### Model Sources 
 
-<!-- Provide the basic links for the model. -->
-
-- **Repository:** {{ repo | default("[More Information Needed]", true)}}
-- **Paper:** RoBERTa: A Robustly Optimized BERT Pretraining Approach. Yinhan Liu et al. 2019
-- **Demo [optional]:** {{ demo | default("[More Information Needed]", true)}}
+- **Repository:** [Fairseq repository](https://github.com/facebookresearch/fairseq/tree/main/examples/roberta)
+- **Paper:** [RoBERTa: A Robustly Optimized BERT Pretraining Approach. Yinhan Liu et al. 2019](https://arxiv.org/abs/1907.11692)
+- **Demo :** {{ demo | default("[More Information Needed]", true)}}
 
 ## Uses Sara 
 
@@ -84,7 +85,7 @@ Use the code below to get started with the model.
 
 <!-- This should link to a Data Card, perhaps with a short stub of information on what the training data is all about as well as documentation related to data pre-processing or additional filtering. -->
 
-{{ training_data | default("[More Information Needed]", true)}}
+The training dataset is composed of Fine Food reviews from Amazon. The reviews include mostly a rating and a plain text review in English. The complete dataset card can be found [here](./dataset_card.md)
 
 ### Training Procedure 
 
@@ -179,8 +180,25 @@ Carbon emissions can be estimated using the [Machine Learning Impact calculator]
 
 **BibTeX:**
 
-{{ citation_bibtex | default("[More Information Needed]", true)}}
+```
+@inproceedings{ott2019fairseq,
+  title = {fairseq: A Fast, Extensible Toolkit for Sequence Modeling},
+  author = {Myle Ott and Sergey Edunov and Alexei Baevski and Angela Fan and Sam Gross and Nathan Ng and David Grangier and Michael Auli},
+  booktitle = {Proceedings of NAACL-HLT 2019: Demonstrations},
+  year = {2019},
+}
+```
 
+```
+@misc{liu2019roberta,
+      title={RoBERTa: A Robustly Optimized BERT Pretraining Approach}, 
+      author={Yinhan Liu and Myle Ott and Naman Goyal and Jingfei Du and Mandar Joshi and Danqi Chen and Omer Levy and Mike Lewis and Luke Zettlemoyer and Veselin Stoyanov},
+      year={2019},
+      eprint={1907.11692},
+      archivePrefix={arXiv},
+      primaryClass={cs.CL}
+}
+```
 **APA:**
 
 {{ citation_apa | default("[More Information Needed]", true)}}
