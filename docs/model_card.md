@@ -31,20 +31,20 @@ This way, the model learns an inner representation of the English language that 
 - **Demo :** {{ demo | default("[More Information Needed]", true)}}
 
 ## Uses  
-Bert-base models are primarily aimed at being fine-tuned on tasks that use the whole sentence to make decisions, such as sequence classification, token classification, or question answering. This fine-tuned version of RoBERTa is used to predict the sentiment of the review as a number of stars (between 1 and 5).
+BERT-base models are primarily aimed at being fine-tuned on tasks that use the whole sentence to make decisions, such as sequence classification, token classification, or question answering. This fine-tuned version of RoBERTa is used to predict the sentiment of the review as a number of stars (between 1 and 5).
 The model is designed to analyze customer reviews and comments in order to understand sentiment and determine whether customers are likely to recommend a product positively or not. 
-Improve customer experience: Sentiment analysis can be used to understand customer opinions and feedback on products and services, allowing companies to improve the customer experience and build stronger customer relationships.
+<!-- - Improve customer experience: Sentiment analysis can be used to understand customer opinions and feedback on products and services, allowing companies to improve the customer experience and build stronger customer relationships.
 -Market research: Sentiment analysis can be used to monitor public sentiment towards a particular topic or brand, providing valuable insights into market trends and customer preferences.
 -Improve product design: Sentiment analysis can be used to understand customer preferences and opinions on product features, allowing companies to design products that better meet customer needs.
 -Improve social media monitoring: Sentiment analysis can be used to monitor social media conversations and understand the tone and sentiment behind them, providing valuable insights into public perception and sentiment.
--Improve decision making: Sentiment analysis can provide a broad overview of the sentiment of a population towards a particular topic or brand, allowing decision-makers to make informed decisions based on data-driven insights.
+-Improve decision making: Sentiment analysis can provide a broad overview of the sentiment of a population towards a particular topic or brand, allowing decision-makers to make informed decisions based on data-driven insights. -->
 
 ### Direct Use 
 
 You can directly use RoBERTa to perform sentiment analysis on Amazon reviews. The model would take a review as input and provide a sentiment label as output. This is a straightforward and commonly applied use case for RoBERTa and other language models, and it is useful for companies to make data-driven decisions, without having to read all the reviews. An idea of the product recommendations will be available and thus be able to make improvements through a global view of all the reviews.
 
 
-### Downstream Use [optional]
+### Downstream Use <!-- [optional]-->
 
 - Improving Recommendations: The sentiment analysis results from RoBERTa can be used to enhance recommendation systems. For example, if a review is positive, it can influence the recommendation algorithm to suggest similar products to the user.
 - Market Research: Analyzing sentiment in Amazon reviews at scale can provide valuable insights into customer opinions and market trends, helping companies make data-driven decisions about their products and marketing strategies.
