@@ -1,5 +1,5 @@
 ---
-# For reference on model card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/modelcard.md?plain=1
+#### For reference on model card metadata, see the spec: https://github.com/huggingface/hub-docs/blob/main/modelcard.md?plain=1
 ---
 
 # Model Card for Amazon Fine Food Reviews
@@ -33,7 +33,7 @@ This way, the model learns an inner representation of the English language that 
 - **Demo :** {{ demo | default("[More Information Needed]", true)}}
 
 ## Uses Sara 
-
+Bert-base models are primarily aimed at being fine-tuned on tasks that use the whole sentence to make decisions, such as sequence classification, token classification, or question answering. This fine-tuned version of RoBERTa is used to predict the sentiment of the review as a number of stars (between 1 and 5).
 The model is designed to analyze customer reviews and comments in order to understand sentiment and determine whether customers are likely to recommend a product positively or not. 
 Improve customer experience: Sentiment analysis can be used to understand customer opinions and feedback on products and services, allowing companies to improve the customer experience and build stronger customer relationships.
 -Market research: Sentiment analysis can be used to monitor public sentiment towards a particular topic or brand, providing valuable insights into market trends and customer preferences.
@@ -43,17 +43,21 @@ Improve customer experience: Sentiment analysis can be used to understand custom
 
 ### Direct Use 
 
-This is useful for companies to make data-driven decisions, without having to read all the reviews. An idea of the product recommendations will be available and thus be able to make improvements through a global view of all the reviews.
+You can directly use RoBERTa to perform sentiment analysis on Amazon reviews. The model would take a review as input and provide a sentiment label as output. This is a straightforward and commonly applied use case for RoBERTa and other language models, and it is useful for companies to make data-driven decisions, without having to read all the reviews. An idea of the product recommendations will be available and thus be able to make improvements through a global view of all the reviews.
+
 
 ### Downstream Use [optional]
 
-<!-- This section is for the model use when fine-tuned for a task, or when plugged into a larger ecosystem/app -->
-
-{{ downstream_use | default("[More Information Needed]", true)}}
+- Improving Recommendations: The sentiment analysis results from RoBERTa can be used to enhance recommendation systems. For example, if a review is positive, it can influence the recommendation algorithm to suggest similar products to the user.
+- Market Research: Analyzing sentiment in Amazon reviews at scale can provide valuable insights into customer opinions and market trends, helping companies make data-driven decisions about their products and marketing strategies.
+- Customer Support: Sentiment analysis can be used to automatically categorize and prioritize customer reviews or feedback for customer support teams to address.
 
 ### Out-of-Scope Use
 
-The model has been trained from reviews, thus there is a subjective opinion in the text.
+RoBERTa can be used for tasks that go beyond simple sentiment analysis. For example:
+- Aspect-Based Sentiment Analysis: Analyzing not just the overall sentiment but also the sentiment towards specific aspects or features mentioned in the reviews, like the product's quality, price, or customer service.
+- Topic Modeling: Identifying the main topics or themes discussed in the reviews.
+- Entity Recognition: Extracting and categorizing entities mentioned in the reviews, such as product names or brands.
 
 ## Bias, Risks, and Limitations Damien
 
@@ -129,7 +133,8 @@ The training dataset is composed of Fine Food reviews from Amazon. The reviews i
 The metric used to evaluate the model is *Accuracy*, as we want to be as sure as possible that all opinions are well represented: in the bad ones the product is not recommended and in the good ones it is.
 
 - Accuracy: 
-
+<!--
+The performance of the fine-tuned RoBERTa model can be evaluated using various evaluation metrics, such as accuracy, precision, recall, and F1 score. These metrics can be calculated on the test set of the Amazon reviews dataset to assess the model's accuracy and effectiveness in predicting sentiment. -->
 ### Results
 
 {{ results | default("[More Information Needed]", true)}}
