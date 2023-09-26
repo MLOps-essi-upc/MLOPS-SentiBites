@@ -19,11 +19,9 @@ More precisely, it was pretrained with the Masked language modeling (MLM) object
 
 This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks. This allows us to re-train the model for our Amazon reviews sentiment analysis task by using labelled sentences.
 
-- **Developed by:** Mariana Monteiro, Sara Montese, Vasco Gomes, Rudio Fida Cyrille, Damien Lastes
-<!-- - **Shared by :** {{ shared_by | default("[More Information Needed]", true)}} -->
+- **Developed by:** Mariana Monteiro, Sara Montese, Vasco Gomes, Rudio Fida Cyrille, Damien Lastes <!-- - **Shared by :** {{ shared_by | default("[More Information Needed]", true)}} -->
 - **Model type:** Transformers
-- **Language(s) (NLP):** English
-<!-- - **License:** {{ license | default("[More Information Needed]", true)}} -->
+- **Language(s) (NLP):** English <!-- - **License:** {{ license | default("[More Information Needed]", true)}} -->
 - **Finetuned from model :** RoBERTa
 
 ### Model Sources 
