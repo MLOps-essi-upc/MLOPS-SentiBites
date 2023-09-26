@@ -20,10 +20,10 @@ More precisely, it was pretrained with the Masked language modeling (MLM) object
 This way, the model learns an inner representation of the English language that can then be used to extract features useful for downstream tasks. This allows us to re-train the model for our Amazon reviews sentiment analysis task by using labelled sentences.
 
 - **Developed by:** Mariana Monteiro, Sara Montese, Vasco Gomes, Rudio Fida Cyrille, Damien Lastes
-- **Shared by :** {{ shared_by | default("[More Information Needed]", true)}}
+<!-- - **Shared by :** {{ shared_by | default("[More Information Needed]", true)}} -->
 - **Model type:** Transformers
 - **Language(s) (NLP):** English
-- **License:** {{ license | default("[More Information Needed]", true)}}
+<!-- - **License:** {{ license | default("[More Information Needed]", true)}} -->
 - **Finetuned from model :** RoBERTa
 
 ### Model Sources 
@@ -32,7 +32,7 @@ This way, the model learns an inner representation of the English language that 
 - **Paper:** [RoBERTa: A Robustly Optimized BERT Pretraining Approach. Yinhan Liu et al. 2019](https://arxiv.org/abs/1907.11692)
 - **Demo :** {{ demo | default("[More Information Needed]", true)}}
 
-## Uses Sara 
+## Uses  
 Bert-base models are primarily aimed at being fine-tuned on tasks that use the whole sentence to make decisions, such as sequence classification, token classification, or question answering. This fine-tuned version of RoBERTa is used to predict the sentiment of the review as a number of stars (between 1 and 5).
 The model is designed to analyze customer reviews and comments in order to understand sentiment and determine whether customers are likely to recommend a product positively or not. 
 Improve customer experience: Sentiment analysis can be used to understand customer opinions and feedback on products and services, allowing companies to improve the customer experience and build stronger customer relationships.
