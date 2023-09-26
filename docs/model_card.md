@@ -57,19 +57,29 @@ RoBERTa can be used for tasks that go beyond simple sentiment analysis. For exam
 - Topic Modeling: Identifying the main topics or themes discussed in the reviews.
 - Entity Recognition: Extracting and categorizing entities mentioned in the reviews, such as product names or brands.
 
-## Bias, Risks, and Limitations Damien
+## Bias, Risks, and Limitations Damien 
 
-### Bias
-- The opinion on a product depends on several subjective aspects that are not covered by the model, such as the size of women.
+### Bias 
 
-### Risks
+- Temporal Bias: The dataset spans a period of more than 10 years, which means that it may not accurately reflect current  consumer  preferences and trends. Products, tastes, and user behaviors can change significantly over time, so older reviews may not be representative of current sentiments. 
 
+- Selection Bias: Since the dataset includes reviews from all Amazon categories, it may not be evenly distributed across product categories. Certain product categories may have more reviews than others, potentially leading to an unbalanced dataset. This could introduce bias when analyzing the data. 
+
+- User Bias: The dataset includes reviews from 256,059 users, but it is possible that some users are more active or influential in their reviewing behavior than others. This could skew the dataset, as reviews from prolific users may carry more weight in analyses. 
+
+### Risks 
+
+- Privacy Risks: The dataset contains user information, and there is a risk that this information could be used to identify individuals. Even if personal identifiers are not included, it's possible that someone with access to additional data could re-identify users. 
+
+- Quality and Authenticity Risks: There may be concerns about the quality and authenticity of the reviews. Some reviews could be fake or manipulated, and without additional verification, it may be challenging to distinguish genuine reviews from fraudulent ones. 
+
+- Data Preprocessing Risks: The dataset includes plain text reviews, which can be noisy and unstructured. Preprocessing and cleaning the text data may introduce errors or bias into the analysis if not done carefully. 
 
 ### Limitations 
-- The model may be less accurate for text data that is significantly different from the e-commerce reviews it was trained on.
-- The model may be less accurate with male review text data, as all instances of the model are female.
-- The model has been trained in English, so it does not support the input of text in other languages.
-- The model does not interpret emojis.
+
+- Language Limitation: The dataset appears to be primarily in English, which limits its applicability to English-speaking audiences. It may not be suitable for analyzing reviews in other languages. 
+
+- Limited Context: The dataset provides information about product reviews, but it lacks additional context, such as the demographic information of reviewers or details about the products themselves. This limits the depth of analysis that can be performed. Temporal Limitation: Since the dataset only goes up to October 2012, it does not capture more recent developments in e-commerce, such as changes in user behavior, the rise of social media, or the impact of new technologies on online shopping. Limited User Behavior Data: While the dataset includes reviews, it may lack data on user interactions beyond reviews, such as product purchases, browsing behavior, or click-through rates, which could provide a more comprehensive view of user behavior.
 
 ### Recommendations
 
