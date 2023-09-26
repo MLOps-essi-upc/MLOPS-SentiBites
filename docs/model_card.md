@@ -73,7 +73,7 @@ RoBERTa can be used for tasks that go beyond simple sentiment analysis. For exam
 
 ### Recommendations
 
-The model is recommended for analyzing overall women's trends in customer sentiment and identifying areas for improvement based on customer feedback.
+<!-- The model is recommended for analyzing overall women's trends in customer sentiment and identifying areas for improvement based on customer feedback. -->
 
 ## How to Get Started with the Model
 
