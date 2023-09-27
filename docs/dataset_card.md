@@ -98,16 +98,7 @@ task_ids:
 
 ### Data Splits
 
-Describe and name the splits in the dataset if there are more than one.
-
-Describe any criteria for splitting the data, if used. If there are differences between the splits (e.g. if the training annotations are machine-generated and the dev and test ones are created by humans, or if different numbers of annotators contributed to each example), describe them here.
-
-Provide the sizes of each split. As appropriate, provide any descriptive statistics for the features, such as average length.  For example:
-
-|                         | train | validation | test |
-|-------------------------|------:|-----------:|-----:|
-| Input Sentences         |       |            |      |
-| Average Sentence Length |       |            |      |
+We will use the well-known train test split method to validate the model. 70% of the dataset will be used to train the model, while the other 30% will be used to test it.
 
 ## Dataset Creation
 
