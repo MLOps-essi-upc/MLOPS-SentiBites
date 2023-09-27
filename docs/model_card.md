@@ -57,7 +57,7 @@ RoBERTa can be used for tasks that go beyond simple sentiment analysis. For exam
 - Topic Modeling: Identifying the main topics or themes discussed in the reviews.
 - Entity Recognition: Extracting and categorizing entities mentioned in the reviews, such as product names or brands.
 
-## Bias, Risks, and Limitations Damien 
+## Bias, Risks, and Limitations 
 
 ### Bias 
 
