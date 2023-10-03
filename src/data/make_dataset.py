@@ -1,30 +1,74 @@
 # -*- coding: utf-8 -*-
-import click
 import logging
-from pathlib import Path
-from dotenv import find_dotenv, load_dotenv
+import re
+import pandas as pd
+import nltk
+nltk.download("stopwords")
+from nltk.corpus import stopwords
 
+# reviews with score 1 or 2 are negative, 3 is neutral and 4 or 5 are positive
+def update_score(score):
+    if score < 3:
+        return "negative"
+    if score > 3:
+        return "positive"
+    else:
+        return "neutral"
 
-@click.command()
-@click.argument('input_filepath', type=click.Path(exists=True))
-@click.argument('output_filepath', type=click.Path())
-def main(input_filepath, output_filepath):
-    """ Runs data processing scripts to turn raw data from (../raw) into
-        cleaned data ready to be analyzed (saved in ../processed).
+# remove html tags, punctuation, stopwords and stemming on a sentence
+def preprocess_text(sentence, snow, stop):
+    sentence = sentence.lower()  # lowercase
+    cleanr = re.compile("<.*?>")
+    sentence = re.sub(cleanr, " ", sentence)  # remove html tags
+    sentence = re.sub(r'[?|!|\'|"|#]', r"", sentence)
+    sentence = re.sub(r"[.|,|)|(|\|/]", r" ", sentence)  # remove punctuation
+    words = [
+        snow.stem(word) for word in sentence.split() if word not in stop
+    ]  # remove stopwords and stemming
+    words = " ".join(words)
+    return words
+
+def main():
+    """Runs data processing scripts to turn raw data from (../raw) into
+    cleaned data ready to be analyzed (saved in ../processed).
     """
     logger = logging.getLogger(__name__)
-    logger.info('making final data set from raw data')
+    logger.info("making final data set from raw data")
 
+    path_raw_file = "./data/raw/Reviews.csv"
+    data = pd.read_csv(path_raw_file)
 
-if __name__ == '__main__':
-    log_fmt = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-    logging.basicConfig(level=logging.INFO, format=log_fmt)
+    data["Score"] = data["Score"].apply(
+        update_score
+    )  # update score for sentiment analysis
+    data = data.dropna(subset=["Text"])  # remove empty reviews
+    data = data.drop_duplicates(
+        subset=["Text", "Time", "UserId", "ProfileName"]
+    )  # remove duplicates
+    data = data[
+        data["HelpfulnessNumerator"] <= data["HelpfulnessDenominator"]
+      ]  # remove invalid data (numerator <= denominator)
 
-    # not used in this stub but often useful for finding various files
-    project_dir = Path(__file__).resolve().parents[2]
+    data["Text"] = data["Text"].astype(str)
+    data["Summary"] = data["Summary"].astype(str)
 
-    # find .env automagically by walking up directories until it's found, then
-    # load up the .env entries as environment variables
-    load_dotenv(find_dotenv())
+    stop = set(stopwords.words("english"))
+    snow = nltk.stem.SnowballStemmer("english")
+    new_text_data = []
+    for sentence in data["Text"]:
+        preprocessed_sentence = preprocess_text(sentence, snow, stop)
+        new_text_data.append(preprocessed_sentence)
+    
+    new_summary_data = []
+    for sentence in data["Summary"]:
+        preprocessed_sentence = preprocess_text(sentence, snow, stop)
+        new_summary_data.append(preprocessed_sentence)
 
+    data["Text"] = new_text_data
+    data["Summary"] = new_summary_data
+    data.to_csv("./data/interim/data.csv")  # save preprocessed data
+
+    #TODO: enconde data and save to ./data/processed/
+
+if __name__ == "__main__":
     main()
