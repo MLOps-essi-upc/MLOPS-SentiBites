@@ -5,6 +5,7 @@ import pandas as pd
 import nltk
 nltk.download("stopwords")
 from nltk.corpus import stopwords
+from sklearn.model_selection import train_test_split
 
 # reviews with score 1 or 2 are negative, 3 is neutral and 4 or 5 are positive
 def update_score(score):
@@ -68,7 +69,17 @@ def main():
     data["Summary"] = new_summary_data
     data.to_csv("./data/interim/data.csv")  # save preprocessed data
 
-    #TODO: enconde data and save to ./data/processed/
+    data = data[["Text", "Summary", "Score"]]  # keep only relevant columns
+    data = data.rename(columns={'Score':'label'}) # renaming score columns to label
+    data = data.sample(n=50000)
+
+    train, test = train_test_split(data, test_size=0.3) # split data into train and test sets (70%/30%)
+
+    train.to_csv("./data/processed/train.csv")
+    test.to_csv("./data/processed/test.csv")
+
+
+
 
 if __name__ == "__main__":
     main()
