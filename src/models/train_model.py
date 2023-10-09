@@ -105,13 +105,15 @@ def train(dataset="",output_dir='./runs',
         predictions = np.argmax(logits, axis=-1)
         return metric.compute(predictions=predictions, references=labels)
 
+    OUTPUT_DIR = "models/" + output_dir
+    LOGGING_DIR = OUTPUT_DIR +"/"+logging_dir
     training_args = TrainingArguments(
-        output_dir=output_dir,
+        output_dir=OUTPUT_DIR,
         num_train_epochs=epochs,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
         evaluation_strategy="epoch",
-        logging_dir=logging_dir,
+        logging_dir=LOGGING_DIR,
         logging_strategy="steps",
         logging_steps=10,
         learning_rate=learning_rate,
@@ -135,7 +137,7 @@ def train(dataset="",output_dir='./runs',
     )
 
     # Training
-    emissions_output_folder = logging_dir
+    emissions_output_folder = OUTPUT_DIR
     with EmissionsTracker(output_dir=emissions_output_folder,
                           output_file="emissions.csv",
                           on_csv_write="update",):
@@ -146,7 +148,7 @@ def train(dataset="",output_dir='./runs',
     print(eval)
     
     # Saving results
-    trainer.save_model('./runs')
+    trainer.save_model(OUTPUT_DIR)
 
 if __name__=='__main__':
     # Command line parsing
