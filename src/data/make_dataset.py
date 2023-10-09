@@ -70,6 +70,7 @@ def main():
     data.to_csv("./data/interim/data.csv")  # save preprocessed data
 
     data = data[["Text", "Summary", "Score"]]  # keep only relevant columns
+    data = data.rename(columns={'Score':'label'}) # renaming score columns to label
     data = data.sample(n=50000)
 
     train, test = train_test_split(data, test_size=0.3) # split data into train and test sets (70%/30%)
