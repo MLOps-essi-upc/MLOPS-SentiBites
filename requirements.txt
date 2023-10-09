@@ -9,7 +9,7 @@ tensorflow
 datasets
 accelerate>=0.20.1
 evaluate
-
+codecarbon
 
 # external requirements
 click

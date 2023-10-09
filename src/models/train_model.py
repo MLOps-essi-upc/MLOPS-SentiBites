@@ -1,5 +1,6 @@
 import torch
 from datasets import load_dataset
+from codecarbon import track_emissions
 from transformers import (
     RobertaTokenizerFast,
     RobertaForSequenceClassification,
@@ -65,6 +66,7 @@ def pre_processing(data,tokenizer):
 
     return train_dataset,val_dataset,test_dataset,id2label,label2id
 
+@track_emissions
 def train(dataset="",output_dir='./runs',
           epochs=1,
           logging_dir='./logs',
