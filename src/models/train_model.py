@@ -66,7 +66,8 @@ def pre_processing(data,tokenizer):
 
     return train_dataset,val_dataset,test_dataset,id2label,label2id
 
-def train(dataset="",output_dir='./runs',
+def train(model='roberta-base',
+          dataset="",output_dir='./runs',
           epochs=1,
           logging_dir='./logs',
           learning_rate=1.e-5,
@@ -84,7 +85,7 @@ def train(dataset="",output_dir='./runs',
     The trained model
     """
 
-    checkpoint = "roberta-base"
+    checkpoint = model
     tokenizer = RobertaTokenizerFast.from_pretrained(checkpoint)
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
@@ -153,6 +154,7 @@ def train(dataset="",output_dir='./runs',
 if __name__=='__main__':
     # Command line parsing
     parser = argparse.ArgumentParser()
+    parser.add_argument("--model",type=str,default="models/",help="name of the model or path to the model")
     parser.add_argument("--dataset",type=str,default="../../",help="Dataset path")
     parser.add_argument("--output_dir",type=str,default="./runs/model",help="Save directory")
     parser.add_argument("--logging_dir",type=str,default="./runs/model/logs",help="Log directory")
@@ -162,7 +164,8 @@ if __name__=='__main__':
     opt = parser.parse_args()
 
     # Training the model
-    train(dataset=opt.dataset,
+    train(model=opt.model,
+          dataset=opt.dataset,
           output_dir=opt.output_dir,
           epochs=opt.epochs,
           logging_dir=opt.logging_dir,

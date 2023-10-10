@@ -14,7 +14,7 @@ You can find the cards here :
 For training :
 
 ```sh
-python3 src/models/train_model.py --dataset data/processed --output_dir run1 --logging_dir logs --epochs 1 --learning_rate 0.001 --weight_decay 0.005
+python3 src/models/train_model.py --model "roberta-base" --dataset data/processed --output_dir run1 --logging_dir logs --epochs 1 --learning_rate 0.001 --weight_decay 0.005
 ```
 
 For inference :
