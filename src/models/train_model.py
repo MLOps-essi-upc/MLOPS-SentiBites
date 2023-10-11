@@ -66,7 +66,8 @@ def pre_processing(data,tokenizer):
 
     return train_dataset,val_dataset,test_dataset,id2label,label2id
 
-def train(dataset="",output_dir='./runs',
+def train(model='roberta-base',
+          dataset="",output_dir='./runs',
           epochs=1,
           logging_dir='./logs',
           learning_rate=1.e-5,
@@ -84,7 +85,7 @@ def train(dataset="",output_dir='./runs',
     The trained model
     """
 
-    checkpoint = "roberta-base"
+    checkpoint = model
     tokenizer = RobertaTokenizerFast.from_pretrained(checkpoint)
     data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
 
@@ -105,13 +106,15 @@ def train(dataset="",output_dir='./runs',
         predictions = np.argmax(logits, axis=-1)
         return metric.compute(predictions=predictions, references=labels)
 
+    OUTPUT_DIR = "models/" + output_dir
+    LOGGING_DIR = OUTPUT_DIR +"/"+logging_dir
     training_args = TrainingArguments(
-        output_dir=output_dir,
+        output_dir=OUTPUT_DIR,
         num_train_epochs=epochs,
         per_device_train_batch_size=8,
         per_device_eval_batch_size=8,
         evaluation_strategy="epoch",
-        logging_dir=logging_dir,
+        logging_dir=LOGGING_DIR,
         logging_strategy="steps",
         logging_steps=10,
         learning_rate=learning_rate,
@@ -135,7 +138,7 @@ def train(dataset="",output_dir='./runs',
     )
 
     # Training
-    emissions_output_folder = logging_dir
+    emissions_output_folder = OUTPUT_DIR
     with EmissionsTracker(output_dir=emissions_output_folder,
                           output_file="emissions.csv",
                           on_csv_write="update",):
@@ -146,11 +149,12 @@ def train(dataset="",output_dir='./runs',
     print(eval)
     
     # Saving results
-    trainer.save_model('./runs')
+    trainer.save_model(OUTPUT_DIR)
 
 if __name__=='__main__':
     # Command line parsing
     parser = argparse.ArgumentParser()
+    parser.add_argument("--model",type=str,default="models/",help="name of the model or path to the model")
     parser.add_argument("--dataset",type=str,default="../../",help="Dataset path")
     parser.add_argument("--output_dir",type=str,default="./runs/model",help="Save directory")
     parser.add_argument("--logging_dir",type=str,default="./runs/model/logs",help="Log directory")
@@ -160,7 +164,8 @@ if __name__=='__main__':
     opt = parser.parse_args()
 
     # Training the model
-    train(dataset=opt.dataset,
+    train(model=opt.model,
+          dataset=opt.dataset,
           output_dir=opt.output_dir,
           epochs=opt.epochs,
           logging_dir=opt.logging_dir,

@@ -13,7 +13,7 @@ codecarbon
 
 # external requirements
 click
-Sphinx>=6.0
+# Sphinx>=6.0
 coverage
 awscli==1.29.47
 flake8
