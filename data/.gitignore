@@ -1,4 +1,4 @@
-/external
-/interim
-/processed
-/raw
+external/
+interim/
+processed/
+raw/
