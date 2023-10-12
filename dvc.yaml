@@ -7,3 +7,14 @@ stages:
     outs:
     - data/processed/test.csv
     - data/processed/train.csv
+  training:
+    cmd: python3 python3 src/models/train_model.py --model roberta-base --dataset
+      data/processed --output_dir SentiBites1 --logging_dir logs --epochs 1 --learning_rate
+      0.001 --weight_decay 0.005
+    deps:
+    - data/processed/test.csv
+    - data/processed/train.csv
+    - src/data/train_model.py
+    outs:
+    - metrics/emissions.csv
+    - models/SentiBites
