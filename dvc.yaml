@@ -14,7 +14,8 @@ stages:
     deps:
     - data/processed/test.csv
     - data/processed/train.csv
-    - src/data/train_model.py
+    - src/models/train_model.py
+    metrics:
+      - metrics/emissions.csv
     outs:
-    - metrics/emissions.csv
     - models/SentiBites
