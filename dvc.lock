@@ -1,0 +1,24 @@
+schema: '2.0'
+stages:
+  data-processing:
+    cmd: python3 src/data/make_dataset.py
+    deps:
+    - path: data/raw/Reviews.csv
+      hash: md5
+      md5: c3c950ae0be8b0736477c89d052d33fd
+      size: 300904694
+    - path: src/data/make_dataset.py
+      hash: md5
+      md5: d63e4087c7910de625fcd1e251b1267a
+      size: 2888
+    outs:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: 6fa397ef63eb590482bd8169b1d393eb
+      size: 4130501
+      isexec: true
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 402681b98ad20d517557b3b51d8c4837
+      size: 9588385
+      isexec: true
