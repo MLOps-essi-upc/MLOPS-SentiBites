@@ -9,11 +9,12 @@ tensorflow
 datasets
 accelerate>=0.20.1
 evaluate
+codecarbon
 great-expectations
 
 # external requirements
 click
-Sphinx>=6.0
+# Sphinx>=6.0
 coverage
 awscli==1.29.47
 flake8
