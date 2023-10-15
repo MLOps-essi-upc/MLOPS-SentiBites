@@ -53,20 +53,20 @@ def main():
     data["Text"] = data["Text"].astype(str)
     data["Summary"] = data["Summary"].astype(str)
 
-    stop = set(stopwords.words("english"))
-    snow = nltk.stem.SnowballStemmer("english")
-    new_text_data = []
-    for sentence in data["Text"]:
-        preprocessed_sentence = preprocess_text(sentence, snow, stop)
-        new_text_data.append(preprocessed_sentence)
+    # stop = set(stopwords.words("english"))
+    # snow = nltk.stem.SnowballStemmer("english")
+    # new_text_data = []
+    # for sentence in data["Text"]:
+    #     preprocessed_sentence = preprocess_text(sentence, snow, stop)
+    #     new_text_data.append(preprocessed_sentence)
     
-    new_summary_data = []
-    for sentence in data["Summary"]:
-        preprocessed_sentence = preprocess_text(sentence, snow, stop)
-        new_summary_data.append(preprocessed_sentence)
+    # new_summary_data = []
+    # for sentence in data["Summary"]:
+    #     preprocessed_sentence = preprocess_text(sentence, snow, stop)
+    #     new_summary_data.append(preprocessed_sentence)
 
-    data["Text"] = new_text_data
-    data["Summary"] = new_summary_data
+    # data["Text"] = new_text_data
+    # data["Summary"] = new_summary_data
     data.to_csv("./data/interim/data.csv")  # save preprocessed data
 
     data = data[["Text", "Summary", "Score"]]  # keep only relevant columns
