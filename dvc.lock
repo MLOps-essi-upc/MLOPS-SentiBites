@@ -9,16 +9,16 @@ stages:
       size: 300904694
     - path: src/data/make_dataset.py
       hash: md5
-      md5: d63e4087c7910de625fcd1e251b1267a
-      size: 2888
+      md5: 0b75f7b740ef85c10482b003aeedfb20
+      size: 2912
     outs:
     - path: data/processed/test.csv
       hash: md5
-      md5: 6fa397ef63eb590482bd8169b1d393eb
-      size: 4130501
+      md5: 2b0bfd43cee0a1919845c07c7dd1584d
+      size: 7194300
       isexec: true
     - path: data/processed/train.csv
       hash: md5
-      md5: 402681b98ad20d517557b3b51d8c4837
-      size: 9588385
+      md5: 4ae015867476b791de48c5dcab67f8be
+      size: 16705991
       isexec: true
