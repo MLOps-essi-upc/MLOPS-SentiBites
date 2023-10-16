@@ -22,3 +22,30 @@ stages:
       md5: 487267fe39ff4ec3ec8a8eee2dfa57aa
       size: 16854697
       isexec: true
+  training:
+    cmd: python3 src/models/train_model.py --model roberta-base --dataset data/processed
+      --output_dir SentiBites1 --logging_dir logs --epochs 1 --learning_rate 0.001
+      --weight_decay 0.005
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: adffff99092202d7a587660718f62ea7
+      size: 7212513
+    - path: data/processed/train.csv
+      hash: md5
+      md5: 487267fe39ff4ec3ec8a8eee2dfa57aa
+      size: 16854697
+    - path: src/models/train_model.py
+      hash: md5
+      md5: 63d176c7031f3a40debac1021975da9d
+      size: 5587
+    outs:
+    - path: metrics/emissions.csv
+      hash: md5
+      md5: 734e38fd3ea61c237e91d87e3e44d64b
+      size: 764
+    - path: models/SentiBites
+      hash: md5
+      md5: 856a296457417a1be469240b976ff201.dir
+      size: 408193021
+      nfiles: 10
