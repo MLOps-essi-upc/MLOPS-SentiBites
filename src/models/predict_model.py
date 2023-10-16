@@ -85,10 +85,6 @@ def cli_parser():
     return args
 
 
-if __name__ == '__main__':
-    opt = cli_parser()
-    predict(opt.input)
-
 if __name__=='__main__':
     opt = Cli_parser()
     predict(opt.input,opt.model)
