@@ -1,23 +1,25 @@
+"""Process the data from data/raw/Reviews.csv into data/processed/data.csv"""
 # -*- coding: utf-8 -*-
 import logging
 import re
 import pandas as pd
 import nltk
-nltk.download("stopwords")
 from nltk.corpus import stopwords
 from sklearn.model_selection import train_test_split
+nltk.download("stopwords")
 
-# reviews with score 1 or 2 are negative, 3 is neutral and 4 or 5 are positive
+
 def update_score(score):
+    """reviews with score 1 or 2 are negative, 3 is neutral and 4 or 5 are positive"""
     if score < 3:
         return "negative"
     if score > 3:
         return "positive"
-    else:
-        return "neutral"
+    return "neutral"
 
-# remove html tags, punctuation, stopwords and stemming on a sentence
+
 def preprocess_text(sentence, snow, stop):
+    """remove html tags, punctuation, stopwords and stemming on a sentence"""
     sentence = sentence.lower()  # lowercase
     cleanr = re.compile("<.*?>")
     sentence = re.sub(cleanr, " ", sentence)  # remove html tags
@@ -28,6 +30,7 @@ def preprocess_text(sentence, snow, stop):
     ]  # remove stopwords and stemming
     words = " ".join(words)
     return words
+
 
 def main():
     """Runs data processing scripts to turn raw data from (../raw) into
@@ -48,10 +51,11 @@ def main():
     )  # remove duplicates
     data = data[
         data["HelpfulnessNumerator"] <= data["HelpfulnessDenominator"]
-      ]  # remove invalid data (numerator <= denominator)
+    ]  # remove invalid data (numerator <= denominator)
 
     data["Text"] = data["Text"].astype(str)
     data["Summary"] = data["Summary"].astype(str)
+
 
     # stop = set(stopwords.words("english"))
     # snow = nltk.stem.SnowballStemmer("english")
@@ -65,20 +69,21 @@ def main():
     #     preprocessed_sentence = preprocess_text(sentence, snow, stop)
     #     new_summary_data.append(preprocessed_sentence)
 
+
     # data["Text"] = new_text_data
     # data["Summary"] = new_summary_data
     data.to_csv("./data/interim/data.csv")  # save preprocessed data
 
     data = data[["Text", "Summary", "Score"]]  # keep only relevant columns
-    data = data.rename(columns={'Score':'label'}) # renaming score columns to label
+    # renaming score columns to label
+    data = data.rename(columns={'Score': 'label'})
     data = data.sample(n=50000)
 
-    train, test = train_test_split(data, test_size=0.3) # split data into train and test sets (70%/30%)
+    # split data into train/test(70%/30%)
+    train, test = train_test_split(data, test_size=0.3)
 
     train.to_csv("./data/processed/train.csv")
     test.to_csv("./data/processed/test.csv")
-
-
 
 
 if __name__ == "__main__":
