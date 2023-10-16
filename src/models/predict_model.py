@@ -13,7 +13,7 @@ def preprocess(text):
             new_text.append(t)
         return " ".join(new_text)
 
-def predict(text,opt=None):
+def predict(text,model=""):
     """
     Do sentiment analysis of the text based on this model cardiffnlp/twitter-roberta-base-sentiment-latest.
 
@@ -27,7 +27,8 @@ def predict(text,opt=None):
     The prediction as a dict.
     """
     
-    MODEL = f"cardiffnlp/twitter-roberta-base-sentiment-latest"
+    # MODEL = f"cardiffnlp/twitter-roberta-base-sentiment-latest"
+    MODEL = model
 
     # Loading the model
     # roberta = Roberta("roberta-base")
@@ -40,8 +41,8 @@ def predict(text,opt=None):
         file.close()
 
     # Preprocessing and tokenization
-    text = preprocess(text)
-    encoded_input = roberta.tokenizer(text, return_tensors='pt')
+    # text = preprocess(text)
+    encoded_input = roberta.tokenizer(text, padding=True, truncation=True, max_length=256,return_tensors='pt')
 
     # Prediction
     output = roberta.model(**encoded_input)
@@ -76,7 +77,7 @@ def Cli_parser():
 
     parser = argparse.ArgumentParser()
     parser.add_argument("--input",type=str,default="",help="text or path to text")
-    # parser.add_argument("--backbone",type=str,default="Rs50",help="Rs50 or Swin")
+    parser.add_argument("--model",type=str,default="cardiffnlp/twitter-roberta-base-sentiment-latest",help="Path to model")
     # parser.add_argument("--scale",type=int,default=4,help="Scale of the model")
     # parser.add_argument("--threshold",type=float,default=0.3,help="IoU threshold")
     opt = parser.parse_args()
@@ -86,4 +87,4 @@ def Cli_parser():
 
 if __name__=='__main__':
     opt = Cli_parser()
-    predict(opt.input,opt)
+    predict(opt.input,opt.model)
