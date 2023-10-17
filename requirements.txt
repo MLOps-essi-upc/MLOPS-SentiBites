@@ -11,6 +11,7 @@ accelerate>=0.20.1
 evaluate
 codecarbon
 dagshub
+dvc
 
 # external requirements
 click
