@@ -165,7 +165,7 @@ def train(model='roberta-base',
             })
 
         # Training
-        emissions_output_folder = OUTPUT_DIR
+        emissions_output_folder = "metrics/"
         emissions_tracker = EmissionsTracker(output_dir=emissions_output_folder,
                             output_file="emissions.csv",
                             on_csv_write="update",)
