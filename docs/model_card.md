@@ -159,12 +159,23 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
 {{ model_examination | default("[More Information Needed]", true)}}
 
 ## Environmental Impact
-
-- **Hardware Type:** {{ hardware | default("[More Information Needed]", true)}}
-- **Hours used:** {{ hours_used | default("[More Information Needed]", true)}}
-- **Cloud Provider:** {{ cloud_provider | default("[More Information Needed]", true)}}
-- **Compute Region:** Spain
-- **Carbon Emitted:** {{ co2_emitted | default("[More Information Needed]", true)}}
+- **co2 eq emissions**:
+      - emissions: 0.43 gCO2e
+      - power consumption: 0.183 kWh
+      - emissions source: code carbon
+      - training type: pre−training 
+      - geographical location: Canada
+      - hardware used: 2 x NVIDIA TITAN Xp
+      <!-- - cloud service: -->
+      - training time: 1804.6 s
+ <!--optimization techniques: any energy optimization techniques used during the model training and deployment process -->
+- **model info**:
+    <!-- - model file size: size of the model resulting file -->
+    - number of parameters: 123M
+    - datasets size: 286 MB
+    - performance metrics:
+        - metric: accuracy
+        - value: 0.908
 
 ## Technical Specifications [optional]
 
