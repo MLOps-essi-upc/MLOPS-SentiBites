@@ -144,7 +144,9 @@ The metric used to evaluate the model is *Accuracy*, as we want to be as sure as
 The performance of the fine-tuned RoBERTa model can be evaluated using various evaluation metrics, such as accuracy, precision, recall, and F1 score. These metrics can be calculated on the test set of the Amazon reviews dataset to assess the model's accuracy and effectiveness in predicting sentiment. -->
 ### Results
 
-{{ results | default("[More Information Needed]", true)}}
+- **Accuracy**: 90.8%
+- **Loss**: 0.205
+- **Duration**: 38.2 min
 
 #### Summary
 
@@ -158,14 +160,10 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
 
 ## Environmental Impact
 
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
-
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
-
 - **Hardware Type:** {{ hardware | default("[More Information Needed]", true)}}
 - **Hours used:** {{ hours_used | default("[More Information Needed]", true)}}
 - **Cloud Provider:** {{ cloud_provider | default("[More Information Needed]", true)}}
-- **Compute Region:** {{ cloud_region | default("[More Information Needed]", true)}}
+- **Compute Region:** Spain
 - **Carbon Emitted:** {{ co2_emitted | default("[More Information Needed]", true)}}
 
 ## Technical Specifications [optional]
