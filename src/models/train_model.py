@@ -12,6 +12,10 @@ from transformers import (
 import evaluate
 import numpy as np
 import argparse
+import mlflow
+import os
+import dagshub
+
 
 def pre_processing(data,tokenizer):
     """
@@ -28,7 +32,8 @@ def pre_processing(data,tokenizer):
     """
 
     # Load dataset
-    dataset = load_dataset(path=data)
+    data_files = {"train": "train.csv", "test": "test.csv"}
+    dataset = load_dataset(path=data, data_files = data_files)
 
     # Training and testing datasets
     train_dataset = dataset['train']
@@ -137,19 +142,52 @@ def train(model='roberta-base',
         data_collator = data_collator,
     )
 
-    # Training
-    emissions_output_folder = OUTPUT_DIR
-    with EmissionsTracker(output_dir=emissions_output_folder,
-                          output_file="emissions.csv",
-                          on_csv_write="update",):
-        trainer.train()
 
-    # Evaluate
-    eval = trainer.evaluate()
-    print(eval)
-    
-    # Saving results
-    trainer.save_model(OUTPUT_DIR)
+    # Initialize MLFLow Run and set experiment name and logging directory
+    os.environ['MLFLOW_TRACKING_URI']='https://dagshub.com/dlastes/MLOps-SentiBites.mlflow'
+    os.environ['MLFLOW_TRACKING_USERNAME'] = 'Rudiio'
+    os.environ['MLFLOW_TRACKING_PASSWORD'] = '087be5008f056f7260152b03b91ec1f5874b5ad9'
+    mlflow.set_tracking_uri("https://dagshub.com/dlastes/MLOps-SentiBites.mlflow")  # Replace with your desired path
+    mlflow.set_experiment("Experiment1")  # Experiment name
+
+    # Log the hyperparameters of your model and training setup
+    dagshub.init("MLOps-SentiBites", "dlastes", mlflow=True)
+    run = "run_epoch_"+ str(opt.epochs) + "_lr_" + str(opt.learning_rate)+"_wd_" + str(opt.weight_decay)
+    print(run)
+    with mlflow.start_run(run_name=run):
+        mlflow.log_params({
+            "model": opt.model,
+            "dataset": opt.dataset,
+            "output_dir": opt.output_dir,
+            "epochs": opt.epochs,
+            "learning_rate": opt.learning_rate,
+            "weight_decay": opt.weight_decay,
+            })
+
+        # Training
+        emissions_output_folder = "metrics/"
+        emissions_tracker = EmissionsTracker(output_dir=emissions_output_folder,
+                            output_file="emissions.csv",
+                            on_csv_write="update",)
+        with emissions_tracker:
+            trainer.train()
+
+        #mlflow.log_metrics(train)
+        #print(train)
+        # Evaluate
+        eval = trainer.evaluate()
+        print(eval)
+        
+         # Log metrics
+        mlflow.log_metrics(eval)  # Log evaluation metrics
+         
+        # Save the trained model
+        mlflow.pytorch.log_model(trainer.model, "model")
+        # Saving results
+        trainer.save_model(OUTPUT_DIR)
+
+        # Close the MLflow run
+        mlflow.end_run()
 
 if __name__=='__main__':
     # Command line parsing
@@ -163,6 +201,7 @@ if __name__=='__main__':
     parser.add_argument("--weight_decay",type=float,default=0.3,help="Weight decay")
     opt = parser.parse_args()
 
+    
     # Training the model
     train(model=opt.model,
           dataset=opt.dataset,

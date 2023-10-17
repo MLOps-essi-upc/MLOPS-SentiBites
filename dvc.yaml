@@ -1,0 +1,29 @@
+stages:
+  data-processing:
+    cmd: python3 src/data/make_dataset.py
+    deps:
+    - data/raw/Reviews.csv
+    - src/data/make_dataset.py
+    outs:
+    - data/processed/test.csv
+    - data/processed/train.csv
+  training:
+    cmd: python3 src/models/train_model.py --model roberta-base --dataset data/processed
+      --output_dir SentiBites1 --logging_dir logs --epochs 1 --learning_rate 0.001
+      --weight_decay 0.005
+    deps:
+    - data/processed/test.csv
+    - data/processed/train.csv
+    - src/models/train_model.py
+    metrics:
+    - metrics/emissions.csv
+    outs:
+    - models/SentiBites
+  evaluation:
+    cmd: python3 src/models/evaluate.py --model models/SentiBites --dataset data/processed
+    deps:
+    - data/processed/test.csv
+    - models/SentiBites
+    - src/models/evaluate_model.py
+    metrics:
+    - metrics/evaluation_scores.csv

@@ -1,4 +1,1 @@
-external/
-interim/
-processed/
-raw/
+*.csv
