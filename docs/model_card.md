@@ -147,35 +147,29 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
 - **Accuracy**: 90.8%
 - **Loss**: 0.205
 - **Duration**: 38.2 min
-
+<!--
 #### Summary
 
-{{ results_summary | default("", true) }}
+{{ results_summary | default("", true) }} -->
 
-## Model Examination [optional]
-
-<!-- Relevant interpretability work for the model goes here -->
-
-{{ model_examination | default("[More Information Needed]", true)}}
 
 ## Environmental Impact
 - **co2 eq emissions**:
-      - emissions: 0.43 gCO2e
-      - power consumption: 0.183 kWh
-      - emissions source: code carbon
-      - training type: pre−training 
-      - geographical location: Canada
-      - hardware used: 2 x NVIDIA TITAN Xp
+      - **emissions**: 0.43 gCO2e
+      - **power consumption**: 0.183 kWh
+      - **emissions source**: code carbon
+      - **training type**: pre−training 
+      - **geographical location**: Canada
+      - **hardware used**: 2 x NVIDIA TITAN Xp
       <!-- - cloud service: -->
-      - training time: 1804.6 s
+      - **training time**: 1804.6 s
  <!--optimization techniques: any energy optimization techniques used during the model training and deployment process -->
 - **model info**:
     <!-- - model file size: size of the model resulting file -->
-    - number of parameters: 123M
-    - datasets size: 286 MB
-    - performance metrics:
-        - metric: accuracy
-        - value: 0.908
+    - **number of parameters**: 123M
+    - **datasets size**: 286 MB
+    - **performance metric**: accuracy
+            - value: 0.908
 
 ## Technical Specifications [optional]
 
