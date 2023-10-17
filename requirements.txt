@@ -10,6 +10,7 @@ datasets
 accelerate>=0.20.1
 evaluate
 codecarbon
+dagshub
 
 # external requirements
 click
