@@ -6,7 +6,7 @@ transformers
 mlflow
 botocore==1.31.47
 tensorflow
-datasets
+datasets==2.11
 accelerate>=0.20.1
 evaluate
 codecarbon
