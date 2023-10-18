@@ -37,15 +37,15 @@ stages:
       size: 16854697
     - path: src/models/train_model.py
       hash: md5
-      md5: 63d176c7031f3a40debac1021975da9d
-      size: 5587
+      md5: 784773b16d9e3fc3b31d7144aecf3579
+      size: 7381
     outs:
     - path: metrics/emissions.csv
       hash: md5
-      md5: 734e38fd3ea61c237e91d87e3e44d64b
-      size: 764
+      md5: a5d08632fd4f815306b0fdf02082c957
+      size: 1180
     - path: models/SentiBites
       hash: md5
-      md5: 856a296457417a1be469240b976ff201.dir
-      size: 408193021
+      md5: 18b4f7b1478054e92600037d8b716956.dir
+      size: 502103967
       nfiles: 10
