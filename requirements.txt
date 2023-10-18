@@ -12,6 +12,8 @@ evaluate
 codecarbon
 dagshub
 dvc
+pytest==7.4.2
+pytest-cov
 
 # external requirements
 click
