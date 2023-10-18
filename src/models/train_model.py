@@ -63,7 +63,6 @@ def pre_processing(data,tokenizer):
     val_dataset = val_dataset.map(tokenize)
     test_dataset = test_dataset.map(tokenize)
 
-
     # Set dataset format
     train_dataset.set_format("torch", columns=["input_ids", "attention_mask", "label"])
     val_dataset.set_format("torch", columns=["input_ids", "attention_mask", "label"])

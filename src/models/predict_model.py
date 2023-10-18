@@ -4,7 +4,20 @@ import os
 import numpy as np
 from scipy.special import softmax
 
-from model import Roberta
+# from model import Roberta
+
+from transformers import AutoModelForSequenceClassification
+from transformers import AutoTokenizer, AutoConfig
+from transformers import RobertaForSequenceClassification, RobertaTokenizer
+
+class SentiBites:
+    def __init__(self,model):
+        self.load_model(model)
+
+    def load_model(self,model_path):
+            self.model = RobertaForSequenceClassification.from_pretrained(model_path)
+            self.tokenizer = RobertaTokenizer.from_pretrained(model_path)
+            self.config = AutoConfig.from_pretrained(model_path)
 
 
 def preprocess(text):
@@ -35,7 +48,7 @@ def predict(text,model=""):
 
     # Loading the model
     # roberta = Roberta("roberta-base")
-    roberta = Roberta(model)
+    roberta = SentiBites(model)
 
     # checking if the text is a path to text file
     if os.path.isfile(text):

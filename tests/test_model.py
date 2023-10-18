@@ -32,7 +32,7 @@ def test_model_correctness(input,expected):
     """
     assert get_label(input)==expected
 
-def test_model_output():
+def test_model_output_struct():
     """ Testing model's output 
     """
 
@@ -43,8 +43,10 @@ def test_model_output():
     # Testing the output
     assert type(pred)==dict
     assert len(pred)==3
+
+def test_model_output_labels():
+    # Making an inference on a str file
+    testing_text = "Salut"
+    pred = predict(text=testing_text,model=MODEL)
     assert set(pred.keys()) == {'positive','negative','neutral'}
     assert sum(pred.values()) == pytest.approx(1.0, rel=0.01)
-
-    
-
