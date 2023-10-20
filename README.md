@@ -1,6 +1,7 @@
 # MLOPS-SentiBites
-![Static Badge](https://img.shields.io/badge/Python?color=blue)
 
+![Static Badge](https://img.shields.io/badge/Language-Python-blue?logoColor=blue)
+![Static Badge](https://img.shields.io/badge/Library-Transformers-yellow?logoColor=blue)
 
 <img src="./docs/SentiB1tes.png" alt="logo" width="300"/>
 
