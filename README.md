@@ -1,7 +1,15 @@
 # MLOPS-SentiBites
 
+![Static Badge](https://img.shields.io/badge/Language-Python-blue?logoColor=blue)
+![Static Badge](https://img.shields.io/badge/Library-Transformers-yellow?logoColor=blue)
+
+<img src="./docs/SentiB1tes.png" alt="logo" width="300"/>
+
+
+
 The goal of this project is to deploy a sentiment analysis model by using the best practices in MLOPS.
-The based model is a [Roberta](https://huggingface.co/docs/transformers/model_doc/roberta) which will be finetuned on an [Amazon reviews dataset](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?select=Reviews.csv).
+The base model is a [Roberta](https://huggingface.co/docs/transformers/model_doc/roberta) which will be finetuned on an [Amazon reviews dataset](https://www.kaggle.com/datasets/snap/amazon-fine-food-reviews?select=Reviews.csv).
+
 ## Cards
 
 You can find the cards here :
