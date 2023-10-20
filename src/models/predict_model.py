@@ -99,5 +99,5 @@ def cli_parser():
 
 
 if __name__=='__main__':
-    opt = Cli_parser()
+    opt = cli_parser()
     predict(opt.input,opt.model)
