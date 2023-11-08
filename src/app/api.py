@@ -7,13 +7,14 @@ from http import HTTPStatus
 from typing import List
 
 from fastapi import FastAPI, HTTPException, Request
+from src.models.predict_model import SentiBites
 
-model_wrappers_list: List[dict] = []
+model = None
 
 # Define application
 app = FastAPI(
-    title="Yet another Iris example",
-    description="This API lets you make predictions on the Iris dataset using a couple of simple models.",
+    title="SentiBites",
+    description="This API lets you make predictions on sentiment analysis of Amazon food reviews.",
     version="0.1",
 )
 
@@ -43,6 +44,13 @@ def construct_response(f):
     return wrap
 
 
+@app.on_event("startup")
+def _load_model():
+    """Loads the model"""
+
+    global model
+    model = SentiBites("models/SentiBites/")
+
 @app.get("/", tags=["General"])  # path operation decorator
 @construct_response
 def _index(request: Request):
@@ -51,43 +59,25 @@ def _index(request: Request):
     response = {
         "message": HTTPStatus.OK.phrase,
         "status-code": HTTPStatus.OK,
-        "data": {"message": "Welcome to IRIS classifier! Please, read the `/docs`!"},
+        "data": {"message": "Welcome to SentiBites! Please, read the `/docs`!"},
     }
     return response
 
-    """Classifies Iris flowers based on sepal and petal sizes."""
+@app.post("/models/", tags=["Prediction"])
+@construct_response
+def _predict(request: Request, payload: str):
+    """Performs sentiment analysis based on the food review."""
 
-    # sklearn's `predict()` methods expect a 2D array of shape [n_samples, n_features]
-    # therefore, we need to convert our single data point into a 2D array
-    features = [
-        [
-            payload.sepal_length,
-            payload.sepal_width,
-            payload.petal_length,
-            payload.petal_width,
-        ]
-    ]
-
-    model_wrapper = next((m for m in model_wrappers_list if m["type"] == type), None)
-
-    if model_wrapper:
-        prediction = model_wrapper["model"].predict(features)
-        prediction = int(prediction[0])
-        predicted_type = IrisType(prediction).name
+    if model:
+        prediction = model.predict(payload)
 
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
-                "model-type": model_wrapper["type"],
-                "features": {
-                    "sepal_length": payload.sepal_length,
-                    "sepal_width": payload.sepal_width,
-                    "petal_length": payload.petal_length,
-                    "petal_width": payload.petal_width,
-                },
+                "model-type": "RoBERTaSB",
+                "payload": payload,
                 "prediction": prediction,
-                "predicted_type": predicted_type,
             },
         }
     else:
