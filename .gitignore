@@ -162,3 +162,7 @@ cython_debug/
 # Report
 out/
 reports/
+
+# DS_STORE
+.DS_Store
+src/.DS_Store
