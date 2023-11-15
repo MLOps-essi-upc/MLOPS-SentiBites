@@ -144,29 +144,31 @@ The metric used to evaluate the model is *Accuracy*, as we want to be as sure as
 The performance of the fine-tuned RoBERTa model can be evaluated using various evaluation metrics, such as accuracy, precision, recall, and F1 score. These metrics can be calculated on the test set of the Amazon reviews dataset to assess the model's accuracy and effectiveness in predicting sentiment. -->
 ### Results
 
-{{ results | default("[More Information Needed]", true)}}
-
+- **Accuracy**: 90.8%
+- **Loss**: 0.205
+- **Duration**: 38.2 min
+<!--
 #### Summary
 
-{{ results_summary | default("", true) }}
+{{ results_summary | default("", true) }} -->
 
-## Model Examination [optional]
-
-<!-- Relevant interpretability work for the model goes here -->
-
-{{ model_examination | default("[More Information Needed]", true)}}
 
 ## Environmental Impact
-
-<!-- Total emissions (in grams of CO2eq) and additional considerations, such as electricity usage, go here. Edit the suggested text below accordingly -->
-
-Carbon emissions can be estimated using the [Machine Learning Impact calculator](https://mlco2.github.io/impact#compute) presented in [Lacoste et al. (2019)](https://arxiv.org/abs/1910.09700).
-
-- **Hardware Type:** {{ hardware | default("[More Information Needed]", true)}}
-- **Hours used:** {{ hours_used | default("[More Information Needed]", true)}}
-- **Cloud Provider:** {{ cloud_provider | default("[More Information Needed]", true)}}
-- **Compute Region:** {{ cloud_region | default("[More Information Needed]", true)}}
-- **Carbon Emitted:** {{ co2_emitted | default("[More Information Needed]", true)}}
+- **co2 eq emissions**:
+    - **emissions**: 0.43 gCO2e
+    - **power consumption**: 0.183 kWh
+    - **emissions source**: code carbon
+    - **training type**: pre−training
+    - **geographical location**: Canada
+    - **hardware used**: 2 x NVIDIA TITAN Xp  <!-- - cloud service: -->
+    - **training time**: 1804.6 s
+ <!--optimization techniques: any energy optimization techniques used during the model training and deployment process -->
+- **model info**:
+    <!-- - model file size: size of the model resulting file -->
+    - **number of parameters**: 123M
+    - **datasets size**: 286 MB
+    - **performance metric**: accuracy
+            - value: 0.908
 
 ## Technical Specifications [optional]
 
