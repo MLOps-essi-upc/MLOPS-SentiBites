@@ -5,15 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SentiBites Sentiment Analysis</title>
     <!-- Links to Bootstrap CSS files -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5/dist/quartz/bootstrap.min.css">
     <!-- Custom CSS -->
     <style>
         .container {
             max-width: 800px;
         }
         .jumbotron {
-            background-color: #007bff;
-            color: #fff;
+            background-color: transparent; /* Change the background color */
+            color: #333; /* Change text color for better contrast */
             padding: 20px;
             border-radius: 10px;
         }
@@ -51,25 +51,32 @@
                         <label for="text">Enter your review text:</label>
                         <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary">Analyze</button>
-                </form>
+                   
+                <button type="submit" class="btn btn-outline-primary mt-2">Analyze</button>
 
+                </form>
+            </div>
+
+            <div class="col-md-6">
+                <img src="{{ url_for('static', filename='image1.png') }}" alt="SentiBites Image" class="img-fluid">
+                
                 {% if prediction %}
-                <h2>Analysis Result:</h2>
-                <p><strong>Model Type:</strong> {{ model_type }}</p>
-                <p><strong>Analyzed Text:</strong></p>
-                <p>{{ text }}</p>
-                <p><strong>Prediction:</strong> {{ prediction }}</p>
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h2 class="card-title">Analysis Result:</h2>
+                        <p><strong>Model Type:</strong> {{ model_type }}</p>
+                        <p><strong>Analyzed Text:</strong></p>
+                        <p>{{ text }}</p>
+                        <p><strong>Prediction:</strong> {{ prediction }}</p>
+                    </div>
+                </div>
                 {% endif %}
 
                 {% if error_message %}
-                <div class="alert alert-danger" role="alert">
+                <div class="alert alert-danger mt-3" role="alert">
                     {{ error_message }}
                 </div>
                 {% endif %}
-            </div>
-            <div class="col-md-6">
-                <img src="{{ url_for('static', filename='image1.png') }}" alt="SentiBites Image" class="img-fluid">
             </div>
         </div>
     </div>
