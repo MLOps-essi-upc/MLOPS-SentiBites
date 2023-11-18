@@ -33,31 +33,44 @@
             border-color: #f5c6cb;
             color: #721c24;
         }
+        
+        /* Stylisation pour les résultats de prédiction */
+        .prediction-positive {
+            color: green;
+            font-size: 1.5em; /* Taille plus grande */
+        }
+        .prediction-negative {
+            color: red;
+            font-size: 1.5em; /* Taille plus grande */
+        }
     </style>
 </head>
 <body>
-    <div class="container mt-5">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-6">
-                <div class="jumbotron">
-                    <h1 class="display-4">Welcome to SentiBites</h1>
-                    <p class="lead">SentiBites is a sentiment analysis tool for Amazon product reviews.</p>
-                    <hr class="my-4">
-                    <p>Find out if the reviews are positive or negative using our advanced sentiment analysis model.</p>
-                </div>
-
-                <form method="post" class="my-4">
-                    <div class="form-group">
-                        <label for="text">Enter your review text:</label>
-                        <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <div class="container mt-5">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Welcome to SentiBites</h1>
+                        <p class="lead">SentiBites is a sentiment analysis tool trained with Amazon product reviews.</p>
+                        <hr class="my-4">
+                        <p>Find out if the reviews are positive or negative using our advanced sentiment analysis model.</p>
                     </div>
-                   
-                <button type="submit" class="btn btn-outline-primary mt-2">Analyze</button>
 
-                </form>
+                    <form method="post" class="my-4">
+                        <div class="form-group">
+                            <label for="text">Enter your review text:</label>
+                            <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-outline-primary mt-2">Analyze</button>
+                    </form>
+                </div>
             </div>
-
-            <div class="col-md-6">
+            
+            <!-- Right Content -->
+            <div class="col-md-3">
                 <img src="{{ url_for('static', filename='image1.png') }}" alt="SentiBites Image" class="img-fluid">
                 
                 {% if prediction %}
@@ -67,7 +80,10 @@
                         <p><strong>Model Type:</strong> {{ model_type }}</p>
                         <p><strong>Analyzed Text:</strong></p>
                         <p>{{ text }}</p>
-                        <p><strong>Prediction:</strong> {{ prediction }}</p>
+                        <!-- Ici, nous appliquons la classe en fonction de la prédiction -->
+                        <p class="{{ 'prediction-positive' if prediction == 'positive' else 'prediction-negative' }}">
+                            <strong>Prediction:</strong> {{ prediction }}
+                        </p>
                     </div>
                 </div>
                 {% endif %}
@@ -81,7 +97,7 @@
         </div>
     </div>
 
-    <!-- Links to Bootstrap JavaScript scripts (jQuery and Popper.js) -->
+    <!-- Bootstrap JavaScript -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
