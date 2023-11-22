@@ -82,7 +82,7 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
             metric=evaluate.combine(["accuracy", "recall", "precision", "f1"]),
             input_column="Text",
             label_column="label",
-            label_mapping=label2id,
+            label_mapping=id2label,
             )
 
     print(eval_results)
