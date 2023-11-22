@@ -73,7 +73,7 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
                                                              label2id=label2id,
                                                              id2label=id2label)
 
-    task_evaluator = evaluator("sentiment-analysis")
+    task_evaluator = evaluator("text-classification")
 
     eval_results = task_evaluator.compute(
             model_or_pipeline=model,
