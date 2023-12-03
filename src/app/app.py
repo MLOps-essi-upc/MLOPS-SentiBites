@@ -3,23 +3,23 @@ import requests
 
 app = Flask(__name__, static_folder="static")
 
-# L'URL de votre API FastAPI
+# The URL of FastAPI API
 api_url = "http://127.0.0.1:8000/models/"
 
 @app.route("/", methods=["GET", "POST"])
 def index():
     if request.method == "POST":
-        # Récupérer le texte saisi par l'utilisateur
+        # Get the text entered by the user
         text = request.form.get("text")
 
-        # Construire l'URL avec le texte comme paramètre
+        # Build the URL with the text as a parameter
         url = f"{api_url}?payload={text.replace(' ', '%20')}"
 
-        # Appeler votre API FastAPI
+        # Call your FastAPI API
         response = requests.post(url)
 
         if response.status_code == 200:
-            # Obtenir les résultats de l'API
+            # Get the results from the API
             data = response.json()
             prediction = data["data"]["prediction"]
             model_type = data["data"]["model-type"]
