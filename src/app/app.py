@@ -26,7 +26,7 @@ def index():
 
             return render_template("index.html", prediction=prediction, model_type=model_type, text=text)
         else:
-            error_message = "Erreur lors de l'appel à l'API."
+            error_message = "Error when calling API."
             return render_template("index.html", error_message=error_message, text=text)
 
     return render_template("index.html")
