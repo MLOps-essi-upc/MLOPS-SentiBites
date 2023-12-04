@@ -1,4 +1,3 @@
-import torch
 from datasets import load_dataset
 from transformers import (
     RobertaTokenizerFast,
@@ -7,7 +6,6 @@ from transformers import (
 )
 import evaluate
 from evaluate import evaluator
-from transformers import pipeline
 
 
 def pre_processing(data,tokenizer):
@@ -80,8 +78,7 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
             model_or_pipeline=model,
             tokenizer=tokenizer,
             data=test,
-            metric=evaluate.combine(["accuracy", "recall", "precision", "f1"]),
-            average='macro',
+            metric=evaluate.combine(["accuracy"]),
             input_column="Text",
             label_column="label",
             label_mapping=label2id,
