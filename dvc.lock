@@ -49,3 +49,24 @@ stages:
       md5: 18b4f7b1478054e92600037d8b716956.dir
       size: 502103967
       nfiles: 10
+  evaluation:
+    cmd: python3 src/models/evaluate.py --model models/SentiBites --dataset data/processed
+    deps:
+    - path: data/processed/test.csv
+      hash: md5
+      md5: adffff99092202d7a587660718f62ea7
+      size: 7212513
+    - path: models/SentiBites
+      hash: md5
+      md5: 18b4f7b1478054e92600037d8b716956.dir
+      size: 502103967
+      nfiles: 10
+    - path: src/models/evaluate_model.py
+      hash: md5
+      md5: c94a08fa59debe1c0405d2aa5b63908b
+      size: 3515
+    outs:
+    - path: metrics/evaluation_scores.csv
+      hash: md5
+      md5: 9fd0ecf8f1e3e187bc6fe055758cc600
+      size: 89
