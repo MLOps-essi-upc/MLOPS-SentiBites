@@ -74,13 +74,14 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
                                                              id2label=id2label)
 
     # Evalutation
-    task_evaluator = evaluator("text-classification")
+    task_evaluator = evaluator("sentiment-analysis")
 
     eval_results = task_evaluator.compute(
             model_or_pipeline=model,
             tokenizer=tokenizer,
             data=test,
             metric=evaluate.combine(["accuracy", "recall", "precision", "f1"]),
+            average='macro',
             input_column="Text",
             label_column="label",
             label_mapping=label2id,
