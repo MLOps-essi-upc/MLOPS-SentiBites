@@ -100,7 +100,7 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
         with open('metrics/evaluation_scores.csv','w+') as file :
                     ct = datetime.datetime.now()
                     res = f"timestamp,accuracy,time\n{ct},{eval_results['accuracy']},{eval_results['total_time_in_seconds']}"
-                    file.write()
+                    file.write(res)
     return eval_results
 
 
