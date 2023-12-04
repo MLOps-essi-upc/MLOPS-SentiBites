@@ -1,6 +1,5 @@
 import torch
 from datasets import load_dataset
-from codecarbon import EmissionsTracker
 from transformers import (
     RobertaTokenizerFast,
     RobertaForSequenceClassification,
@@ -8,6 +7,7 @@ from transformers import (
 )
 import evaluate
 from evaluate import evaluator
+from transformers import pipeline
 
 
 def pre_processing(data,tokenizer):
@@ -43,12 +43,12 @@ def pre_processing(data,tokenizer):
 
     # This function tokenizes the input text using the RoBERTa tokenizer. 
     # It applies padding and truncation to ensure that all sequences have the same length (256 tokens).
-    # def tokenize(batch):
-    #     batch['label'] = label2id[batch['label']]
-    #     return tokenizer(batch["Text"], padding=True, truncation=True, max_length=256)
+    def transform_label(batch):
+        batch['label'] = label2id[batch['label']]
+        return batch
 
     # Tokenizing the data
-    # test_dataset = test_dataset.map(tokenize)
+    test_dataset = test_dataset.map(transform_label)
 
     # Set dataset format
     # test_dataset.set_format("torch", columns=["input_ids", "attention_mask", "label"])
@@ -73,6 +73,7 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
                                                              label2id=label2id,
                                                              id2label=id2label)
 
+    # Evalutation
     task_evaluator = evaluator("text-classification")
 
     eval_results = task_evaluator.compute(
@@ -88,7 +89,6 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
     print(eval_results)
 
     return eval_results
-
 
 
 if __name__ == "__main__":
