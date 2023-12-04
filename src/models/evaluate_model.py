@@ -30,14 +30,16 @@ def pre_processing(data,tokenizer):
     test_dataset = dataset["test"].shard(num_shards=2, index=0)
 
     # Extract the number of classes and their names
-    num_labels = len(set(dataset['train']['label']))
-    class_names = set(dataset['train']['label'])
+    num_labels = len(set(dataset['test']['label']))
+    class_names = set(dataset['test']['label'])
     print(f"number of labels: {num_labels}")
     print(f"the labels: {class_names}")
 
     # Create an id2label mapping
-    id2label = {i: label for i, label in enumerate(class_names)}
-    label2id = {label: i for i, label in enumerate(class_names)}
+    # id2label = {i: label for i, label in enumerate(class_names)}
+
+    id2label= {0: "positive",1: "negative",2: "neutral"}
+    label2id= {"negative": 1,"neutral": 2,"positive": 0}
 
     # This function tokenizes the input text using the RoBERTa tokenizer. 
     # It applies padding and truncation to ensure that all sequences have the same length (256 tokens).
