@@ -6,6 +6,11 @@ from transformers import (
 )
 import evaluate
 from evaluate import evaluator
+import os
+
+import datetime;
+
+
 
 
 def pre_processing(data,tokenizer):
@@ -86,8 +91,16 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
             label_mapping=label2id,
             )
 
-    print(eval_results)
-
+    if os.path.exists("metrics/evaluation_scores.csv'"):
+        with open('metrics/evaluation_scores.csv','a+') as file :
+            ct = datetime.datetime.now()
+            res = f"{ct},{eval_results['accuracy']},{eval_results['total_time_in_seconds']}"
+            file.write(res)
+    else:
+        with open('metrics/evaluation_scores.csv','w+') as file :
+                    ct = datetime.datetime.now()
+                    res = f"timestamp,accuracy,time\n{ct},{eval_results['accuracy']},{eval_results['total_time_in_seconds']}"
+                    file.write()
     return eval_results
 
 
