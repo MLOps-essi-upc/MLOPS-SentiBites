@@ -94,12 +94,12 @@ def eval(model="models/SentiBites",dataset='data/processed/'):
     if os.path.exists("metrics/evaluation_scores.csv'"):
         with open('metrics/evaluation_scores.csv','a+') as file :
             ct = datetime.datetime.now()
-            res = f"{ct},{eval_results['accuracy']},{eval_results['total_time_in_seconds']}"
+            res = f"{ct},{eval_results['accuracy']},{eval_results['total_time_in_seconds']}\n"
             file.write(res)
     else:
         with open('metrics/evaluation_scores.csv','w+') as file :
                     ct = datetime.datetime.now()
-                    res = f"timestamp,accuracy,time\n{ct},{eval_results['accuracy']},{eval_results['total_time_in_seconds']}"
+                    res = f"timestamp,accuracy,time\n{ct},{eval_results['accuracy']},{eval_results['total_time_in_seconds']}\n"
                     file.write(res)
     return eval_results
 
