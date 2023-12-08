@@ -28,11 +28,18 @@ class SentiBites:
             scores = output[0][0].detach().numpy()
             scores = softmax(scores)
 
-            # Printing the prediction
+            # Selecting the best score
             ranking = np.argsort(scores)
             ranking = ranking[::-1]
-    
-            return self.config.id2label[ranking[0]]
+            
+            # Stroring the scores
+            res = {}
+            for i in range(scores.shape[0]):
+                length = self.config.id2label[ranking[i]]
+                score = scores[ranking[i]]
+                res[length] = float(score)
+
+            return self.config.id2label[ranking[0]],res 
 
 def preprocess(text):
     """remove links and mentions in a sentence"""

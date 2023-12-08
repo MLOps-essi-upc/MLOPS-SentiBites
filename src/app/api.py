@@ -5,9 +5,19 @@ from datetime import datetime
 from functools import wraps
 from http import HTTPStatus
 from typing import List
+import os
+import sys
 
+from contextlib import asynccontextmanager
 from fastapi import FastAPI, HTTPException, Request
 from src.models.predict_model import SentiBites
+from src.app.schemas import Review
+
+# Get the parent directory
+parent_dir = os.path.dirname(os.path.realpath(__file__))
+
+# Add the parent directory to sys.path
+sys.path.append(parent_dir)
 
 model = None
 
@@ -50,6 +60,7 @@ def _load_model():
 
     global model
     model = SentiBites("models/SentiBites/")
+    
 
 @app.get("/", tags=["General"])  # path operation decorator
 @construct_response
@@ -65,19 +76,24 @@ def _index(request: Request):
 
 @app.post("/models/", tags=["Prediction"])
 @construct_response
-def _predict(request: Request, payload: str):
+def _predict(request: Request, payload: Review):
     """Performs sentiment analysis based on the food review."""
-
+    
     if model:
-        prediction = model.predict(payload)
+        prediction,scores = model.predict(payload.msg)
 
         response = {
             "message": HTTPStatus.OK.phrase,
             "status-code": HTTPStatus.OK,
             "data": {
                 "model-type": "RoBERTaSB",
-                "payload": payload,
+                "payload": payload.msg,
                 "prediction": prediction,
+                "Scores" : {
+                    "positive" : scores['positive'],
+                    "neutral" : scores['neutral'],
+                    "negative" : scores['negative']
+                }
             },
         }
     else:
