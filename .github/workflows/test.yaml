@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Use python
       uses: actions/setup-python@v4
@@ -24,5 +24,8 @@ jobs:
     - name: Install dependencies 
       run: pip install -r requirements.txt
 
+    - name: show cwd
+      run : python -c "import sys; print('\n'.join(sys.path))"
+      
     - name: Run tests
       run: pytest tests/

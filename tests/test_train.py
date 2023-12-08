@@ -1,4 +1,3 @@
-import pytest
 import os
 import sys
 
@@ -11,7 +10,6 @@ sys.path.append(parent_dir)
 from src.models.predict_model import predict,SentiBites
 from src.models.train_model import pre_processing, train
 import datasets
-import pandas as pd
 
 MODEL = 'models/SentiBites'
 
