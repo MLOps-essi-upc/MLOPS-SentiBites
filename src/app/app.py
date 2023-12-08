@@ -16,7 +16,7 @@ def index():
         payload = {'msg':text}
 
         # Call your FastAPI API
-        response = requests.post(api_url,data=payload)
+        response = requests.post(api_url,json=payload)
 
         if response.status_code == 200:
             # Get the results from the API
