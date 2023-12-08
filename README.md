@@ -39,6 +39,19 @@ dvc pull -r origin
 pytest tests/
 ```
 
+## Deployment with Docker
+
+1. Create the docker image
+
+```sh
+docker build -t Sentibites:1.0 .
+```
+
+2. Run the container
+```sh
+docker run -p 5000:8000 Sentibites
+```
+
 ## Usage
 
 For training :
