@@ -49,10 +49,10 @@ docker build -t Sentibites:1.0 .
 
 2. Run the container
 ```sh
-docker run -p 5000:8000 Sentibites
+docker run -p 5000:5000 -p 8000:8000 Sentibites
 ```
 
-## Usage
+## Usage without App
 
 For training :
 
@@ -63,5 +63,5 @@ python3 src/models/train_model.py --model "roberta-base" --dataset data/processe
 For inference :
 
 ```sh
-python3 src/models/predict_model.py --input "text"
+python3 src/models/predict_model.py --model "models/SentiBites" --input "text"
 ```
