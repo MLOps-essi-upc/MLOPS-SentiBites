@@ -6,6 +6,7 @@ transformers
 mlflow
 botocore  
 tensorflow
+fsspec==2023.9.2
 datasets==2.11
 accelerate>=0.20.1
 evaluate
