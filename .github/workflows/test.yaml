@@ -25,7 +25,7 @@ jobs:
       run: pip install -r requirements.txt
 
     - name: show cwd
-      run : python -c "import sys; print('\n'.join(sys.path))"
+      run : python -c "import os; print('\n',os.getcwd())"
 
     - name: Run tests
       run: python -m pytest
