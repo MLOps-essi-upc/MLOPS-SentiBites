@@ -27,5 +27,8 @@ jobs:
     - name: show cwd
       run : python -c "import os; print('\n',os.getcwd())"
 
+    - name : pull data from dvc
+      run : python -m dvc pull -r origin
+
     - name: Run tests
       run: python -m pytest
