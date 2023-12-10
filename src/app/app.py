@@ -13,10 +13,10 @@ def index():
         text = request.form.get("text")
 
         # Build the URL with the text as a parameter
-        url = f"{api_url}?payload={text.replace(' ', '%20')}"
+        payload = {'msg':text}
 
         # Call your FastAPI API
-        response = requests.post(url)
+        response = requests.post(api_url,json=payload)
 
         if response.status_code == 200:
             # Get the results from the API

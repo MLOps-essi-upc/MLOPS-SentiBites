@@ -43,6 +43,10 @@
             color: red;
             font-size: 1.5em; /* Taille plus grande */
         }
+        .prediction-neutre {
+            color: blue;
+            font-size: 1.5em; /* Taille plus grande */
+        }
     </style>
 </head>
 <body>
@@ -81,7 +85,7 @@
                         <p><strong>Analyzed Text:</strong></p>
                         <p>{{ text }}</p>
                         <!-- Ici, nous appliquons la classe en fonction de la prédiction -->
-                        <p class="{{ 'prediction-positive' if prediction == 'positive' else 'prediction-negative' }}">
+                        <p class="{{ 'prediction-positive' if prediction == 'positive' else 'prediction-negative' if prediction == 'negative' else 'prediction-neutre'  }}">
                             <strong>Prediction:</strong> {{ prediction }}
                         </p>
                     </div>
