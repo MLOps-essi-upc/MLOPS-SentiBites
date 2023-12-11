@@ -169,7 +169,7 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
     - **datasets size**: 286 MB
     - **performance metric**: accuracy
             - value: 0.908
-
+<!--
 ## Technical Specifications [optional]
 
 ### Model Architecture and Objective
@@ -187,7 +187,7 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
 #### Software
 
 {{ software | default("[More Information Needed]", true)}}
-
+-->
 ## Citation [optional]
 
 <!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
@@ -213,24 +213,12 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
       primaryClass={cs.CL}
 }
 ```
-**APA:**
-
-{{ citation_apa | default("[More Information Needed]", true)}}
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-{{ glossary | default("[More Information Needed]", true)}}
-
-## More Information [optional]
-
-{{ more_information | default("[More Information Needed]", true)}}
-
-## Model Card Authors [optional]
-
-{{ model_card_authors | default("[More Information Needed]", true)}}
 
 ## Model Card Contact
 
-{{ model_card_contact | default("[More Information Needed]", true)}}
+Fida Cyrille, Rudio | rudio.fida-cyrille@estudiantat.upc.edu 
+Gomes, Vasco | vasco.david.antunes.pereira@estudiantat.upc.edu 
+Lastes, Damien | damien.lastes@estudiantat.upc.edu 
+Monteiro, Mariana | mariana.mirra@estudiantat.upc.edu 
+Montese, Sara | sara.montese@estudiantat.upc.edu 
+
