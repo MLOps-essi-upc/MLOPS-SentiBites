@@ -1,0 +1,55 @@
+name: Run tests CI
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+      - dev
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Use python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies 
+      run: pip install -r requirements.txt
+
+    - name: show cwd
+      run : python -c "import os; print('\n',os.getcwd())"
+
+    - name : pull data from dvc
+      run : python -m dvc pull -r origin
+
+    - name: Run tests
+      run: python -m pytest
+
+  cd:
+    runs-on: ubuntu-latest
+    needs : ci
+    steps : 
+    - name : Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Docker login
+      run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
+
+    - name: Build
+      run: docker build -t sentibites .
+    - name: Tags
+      run: |
+        docker tag sentibites ${{ secrets.DOCKER_HUB_USERNAME }}/sentibites:${{ github.sha }}
+        docker tag sentibites ${{ secrets.DOCKER_HUB_USERNAME }}/sentibites:latest
+
+    - name: Push
+      run: |
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/sentibites:${{ github.sha }}
+        docker push ${{ secrets.DOCKER_HUB_USERNAME }}/sentibites:latest
