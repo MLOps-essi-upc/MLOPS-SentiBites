@@ -129,12 +129,6 @@ The training dataset is composed of Fine Food reviews from Amazon. The reviews i
 
 {{ testing_data | default("[More Information Needed]", true)}}
 
-#### Factors
-
-<!-- These are the things the evaluation is disaggregating by, e.g., subpopulations or domains. -->
-
-{{ testing_factors | default("[More Information Needed]", true)}}
-
 #### Metrics
 
 The metric used to evaluate the model is *Accuracy*, as we want to be as sure as possible that all opinions are well represented: in the bad ones the product is not recommended and in the good ones it is.
@@ -147,10 +141,6 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
 - **Accuracy**: 90.8%
 - **Loss**: 0.205
 - **Duration**: 38.2 min
-<!--
-#### Summary
-
-{{ results_summary | default("", true) }} -->
 
 
 ## Environmental Impact
@@ -169,7 +159,7 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
     - **datasets size**: 286 MB
     - **performance metric**: accuracy
             - value: 0.908
-
+<!--
 ## Technical Specifications [optional]
 
 ### Model Architecture and Objective
@@ -187,10 +177,8 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
 #### Software
 
 {{ software | default("[More Information Needed]", true)}}
-
+-->
 ## Citation [optional]
-
-<!-- If there is a paper or blog post introducing the model, the APA and Bibtex information for that should go in this section. -->
 
 **BibTeX:**
 
@@ -213,19 +201,6 @@ The performance of the fine-tuned RoBERTa model can be evaluated using various e
       primaryClass={cs.CL}
 }
 ```
-**APA:**
-
-{{ citation_apa | default("[More Information Needed]", true)}}
-
-## Glossary [optional]
-
-<!-- If relevant, include terms and calculations in this section that can help readers understand the model or model card. -->
-
-{{ glossary | default("[More Information Needed]", true)}}
-
-## More Information [optional]
-
-{{ more_information | default("[More Information Needed]", true)}}
 
 ## Model Card Authors [optional]
 
