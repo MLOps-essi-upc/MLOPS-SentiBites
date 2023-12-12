@@ -39,6 +39,17 @@ jobs:
     - name : Checkout repository
       uses: actions/checkout@v4
 
+    - name: Use python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name : install dvc
+      run : pip install dvc
+      
+    - name : pull data from dvc
+      run : python -m dvc pull -r origin
+
     - name: Docker login
       run: docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
 
