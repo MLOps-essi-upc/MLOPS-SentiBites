@@ -4,11 +4,13 @@ ENV PYTHONUNBUFFERED 1
 
 COPY requirements.txt .
 
+RUN pip install --no-cache-dir -r requirements.txt
+
+RUN python -m dvc pull -r origin
+
 WORKDIR /app
 
 COPY . /app/
-
-RUN pip install --no-cache-dir -r requirements.txt
 
 EXPOSE 5000
 
