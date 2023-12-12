@@ -19,6 +19,27 @@ class SentiBites:
             self.tokenizer = RobertaTokenizer.from_pretrained(model_path)
             self.config = AutoConfig.from_pretrained(model_path)
 
+    def predict(self, text):
+            
+            encoded_input = self.tokenizer(text, padding=True, truncation=True, max_length=256,return_tensors='pt')
+
+            # Prediction
+            output = self.model(**encoded_input)
+            scores = output[0][0].detach().numpy()
+            scores = softmax(scores)
+
+            # Selecting the best score
+            ranking = np.argsort(scores)
+            ranking = ranking[::-1]
+            
+            # Stroring the scores
+            res = {}
+            for i in range(scores.shape[0]):
+                length = self.config.id2label[ranking[i]]
+                score = scores[ranking[i]]
+                res[length] = float(score)
+
+            return self.config.id2label[ranking[0]],res 
 
 def preprocess(text):
     """remove links and mentions in a sentence"""

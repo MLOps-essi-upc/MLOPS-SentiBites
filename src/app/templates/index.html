@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SentiBites Sentiment Analysis</title>
+    <!-- Links to Bootstrap CSS files -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5/dist/quartz/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        .container {
+            max-width: 800px;
+        }
+        .jumbotron {
+            background-color: transparent; /* Change the background color */
+            color: #333; /* Change text color for better contrast */
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        
+        /* Stylisation pour les résultats de prédiction */
+        .prediction-positive {
+            color: green;
+            font-size: 1.5em; /* Taille plus grande */
+        }
+        .prediction-negative {
+            color: red;
+            font-size: 1.5em; /* Taille plus grande */
+        }
+        .prediction-neutre {
+            color: blue;
+            font-size: 1.5em; /* Taille plus grande */
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Main Content -->
+            <div class="col-md-8">
+                <div class="container mt-5">
+                    <div class="jumbotron">
+                        <h1 class="display-4">Welcome to SentiBites</h1>
+                        <p class="lead">SentiBites is a sentiment analysis tool trained with Amazon product reviews.</p>
+                        <hr class="my-4">
+                        <p>Find out if the reviews are positive or negative using our advanced sentiment analysis model.</p>
+                    </div>
+
+                    <form method="post" class="my-4">
+                        <div class="form-group">
+                            <label for="text">Enter your review text:</label>
+                            <textarea class="form-control" id="text" name="text" rows="4" required></textarea>
+                        </div>
+                    
+                        <button type="submit" class="btn btn-outline-primary mt-2">Analyze</button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Right Content -->
+            <div class="col-md-3">
+                <img src="{{ url_for('static', filename='image1.png') }}" alt="SentiBites Image" class="img-fluid">
+                
+                {% if prediction %}
+                <div class="card mt-3">
+                    <div class="card-body">
+                        <h2 class="card-title">Analysis Result:</h2>
+                        <p><strong>Model Type:</strong> {{ model_type }}</p>
+                        <p><strong>Analyzed Text:</strong></p>
+                        <p>{{ text }}</p>
+                        <!-- Ici, nous appliquons la classe en fonction de la prédiction -->
+                        <p class="{{ 'prediction-positive' if prediction == 'positive' else 'prediction-negative' if prediction == 'negative' else 'prediction-neutre'  }}">
+                            <strong>Prediction:</strong> {{ prediction }}
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+
+                {% if error_message %}
+                <div class="alert alert-danger mt-3" role="alert">
+                    {{ error_message }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -5,4 +5,4 @@ omit = ["src/data/*",'src/features/*',"src/visualization/*","src/models/model.py
 
 [tool.pytest.ini_options]
 testpaths = "tests"
-addopts = "--junitxml=out/tests-report.xml --cov=src --cov-report=html:reports/coverage"
+addopts = "--junitxml=out/tests-report.xml"
